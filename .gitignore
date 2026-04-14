@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/TaskManager.Api/obj
+/TaskManager.Application/obj
+/TaskManager.Domain/obj
+/TaskManager.Infrastructure/obj
+/TaskManager.Api/TaskManager.Api.csproj.user
