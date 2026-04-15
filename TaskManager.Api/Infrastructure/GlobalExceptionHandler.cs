@@ -11,6 +11,11 @@ namespace TaskManager.Api.Infrastructure
             Exception exception,
             CancellationToken cancellationToken)
         {
+            // ==========================================
+            // TODO: LOG DE ERRO/EXCEÇÃO
+            // Implementar persistência de log de erro.
+            // ==========================================
+
             if (exception is ValidationException validationException)
             {
                 var problemDetails = new ProblemDetails

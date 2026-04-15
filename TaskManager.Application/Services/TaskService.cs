@@ -18,6 +18,11 @@ public class TaskService : ITaskService
 
     public async Task<CreateTaskResponse> CreateTaskAsync(CreateTaskRequest request)
     {
+        // ==========================================
+        // TODO: LOG TRANSACIONAL (INÍCIO)
+        // Registrar tentativa de criação de tarefa.
+        // ==========================================
+
         var validationResult = await _validator.ValidateAsync(request);
         if (!validationResult.IsValid)
         {
@@ -26,12 +31,28 @@ public class TaskService : ITaskService
 
         var task = new TaskItem(request.Title, request.Description, request.DueDate);
         await _repository.AddAsync(task);
+
+        // ==========================================
+        // TODO: LOG TRANSACIONAL (SUCESSO)
+        // Registrar que o fluxo de criação terminou com sucesso.
+        // ==========================================
+
         return new CreateTaskResponse(task.Id);
     }
 
     public async Task<IEnumerable<GetTasksResponse>> GetAllAsync(Domain.Enums.TaskStatus? status, DateTime? dueDate)
     {
+        // ==========================================
+        // TODO: LOG TRANSACIONAL (INÍCIO)
+        // Registrar tentativa de pesquisa de tarefas.
+        // ==========================================
+
         var tasks = await _repository.SearchAsync(status, dueDate);
+
+        // ==========================================
+        // TODO: LOG TRANSACIONAL (SUCESSO)
+        // Registrar que o fluxo de pesquisa terminou com sucesso.
+        // ==========================================
 
         return tasks.Select(t => new GetTasksResponse
         {
@@ -41,10 +62,16 @@ public class TaskService : ITaskService
             DueDate = t.DueDate,
             Status = t.Status.ToString()
         });
+
     }
 
     public async Task UpdateTaskAsync(Guid id, UpdateTaskRequest request)
     {
+        // ==========================================
+        // TODO: LOG TRANSACIONAL (INÍCIO)
+        // Registrar tentativa de atualização de tarefa.
+        // ==========================================
+
         var task = await _repository.GetByIdAsync(id);
 
         if (task == null)
@@ -53,15 +80,30 @@ public class TaskService : ITaskService
         task.Update(request.Title, request.Description, request.DueDate, request.Status);
 
         await _repository.UpdateAsync(task);
+
+        // ==========================================
+        // TODO: LOG TRANSACIONAL (SUCESSO)
+        // Registrar que o fluxo de atualização terminou com sucesso.
+        // ==========================================
     }
 
     public async Task DeleteTaskAsync(Guid id)
     {
+        // ==========================================
+        // TODO: LOG TRANSACIONAL (INÍCIO)
+        // Registrar tentativa de exclusão de tarefa.
+        // ==========================================
+
         var task = await _repository.GetByIdAsync(id);
 
         if (task == null)
             throw new KeyNotFoundException("Tarefa não encontrada para exclusão.");
 
         await _repository.DeleteAsync(task);
+
+        // ==========================================
+        // TODO: LOG TRANSACIONAL (SUCESSO)
+        // Registrar que o fluxo de exclusão terminou com sucesso.
+        // ==========================================
     }
 }
