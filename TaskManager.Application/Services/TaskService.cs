@@ -54,4 +54,14 @@ public class TaskService : ITaskService
 
         await _repository.UpdateAsync(task);
     }
+
+    public async Task DeleteTaskAsync(Guid id)
+    {
+        var task = await _repository.GetByIdAsync(id);
+
+        if (task == null)
+            throw new KeyNotFoundException("Tarefa não encontrada para exclusão.");
+
+        await _repository.DeleteAsync(task);
+    }
 }

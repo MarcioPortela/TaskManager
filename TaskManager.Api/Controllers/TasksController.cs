@@ -77,4 +77,26 @@ public class TasksController : ControllerBase
             return NotFound();
         }
     }
+
+    /// <summary>
+    /// Remove uma tarefa.
+    /// </summary>
+    /// <param name="id">Código único da tarefa a ser removida.</param>
+    /// <response code="204">Tarefa removida com sucesso.</response>
+    /// <response code="404">Tarefa não encontrada.</response>
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        try
+        {
+            await _taskService.DeleteTaskAsync(id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
+    }
 }

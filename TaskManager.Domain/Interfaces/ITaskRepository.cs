@@ -8,4 +8,5 @@ public interface ITaskRepository
     Task<IEnumerable<TaskItem>> SearchAsync(Enums.TaskStatus? status, DateTime? dueDate);
     Task<TaskItem?> GetByIdAsync(Guid id);
     Task UpdateAsync(TaskItem task);
+    Task DeleteAsync(TaskItem task);
 }
