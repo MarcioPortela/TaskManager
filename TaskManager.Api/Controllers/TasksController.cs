@@ -55,4 +55,26 @@ public class TasksController : ControllerBase
         var tasks = await _taskService.GetAllAsync(status, dueDate);
         return Ok(tasks);
     }
+
+    /// <summary>
+    /// Atualiza uma tarefa existente.
+    /// </summary>
+    /// <param name="id">Código único da tarefa.</param>
+    /// <param name="request">Novos dados da tarefa.</param>
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateTaskRequest request)
+    {
+        try
+        {
+            await _taskService.UpdateTaskAsync(id, request);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
+    }
 }

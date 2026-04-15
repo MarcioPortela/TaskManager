@@ -22,14 +22,15 @@ namespace TaskManager.Domain.Entities
             Status = Enums.TaskStatus.Pending;
         }
 
-        public void UpdateStatus(Enums.TaskStatus newStatus)
+        public void Update(string title, string? description, DateTime? dueDate, Domain.Enums.TaskStatus status)
         {
-            Status = newStatus;
-        }
+            if (string.IsNullOrWhiteSpace(title))
+                throw new ArgumentException("O título é obrigatório.", nameof(title));
 
-        public void UpdateDescription(string? description)
-        {
+            Title = title;
             Description = description;
+            DueDate = dueDate;
+            Status = status;
         }
     }
 }

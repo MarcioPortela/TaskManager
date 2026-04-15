@@ -42,4 +42,16 @@ public class TaskService : ITaskService
             Status = t.Status.ToString()
         });
     }
+
+    public async Task UpdateTaskAsync(Guid id, UpdateTaskRequest request)
+    {
+        var task = await _repository.GetByIdAsync(id);
+
+        if (task == null)
+            throw new KeyNotFoundException("Tarefa não encontrada.");
+
+        task.Update(request.Title, request.Description, request.DueDate, request.Status);
+
+        await _repository.UpdateAsync(task);
+    }
 }

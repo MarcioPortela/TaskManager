@@ -36,4 +36,15 @@ public class TaskRepository : ITaskRepository
 
         return await query.ToListAsync();
     }
+
+    public async Task<TaskItem?> GetByIdAsync(Guid id)
+    {
+        return await _context.Tasks.FindAsync(id);
+    }
+
+    public async Task UpdateAsync(TaskItem task)
+    {
+        _context.Tasks.Update(task);
+        await _context.SaveChangesAsync();
+    }
 }
