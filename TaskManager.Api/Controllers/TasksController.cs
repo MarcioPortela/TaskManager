@@ -42,4 +42,17 @@ public class TasksController : ControllerBase
 
         return Created($"/api/v1/tasks/{response.Id}", response);
     }
+
+    /// <summary>
+    /// Lista todas as tarefas. Também lista com filtros de status e data.
+    /// </summary>
+    /// <param name="status">Filtrar por status (0=Pending, 1=InProgress, 2=Completed).</param>
+    /// <param name="dueDate">Filtrar por uma data de vencimento.</param>
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<GetTasksResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAll([FromQuery] Domain.Enums.TaskStatus? status, [FromQuery] DateTime? dueDate)
+    {
+        var tasks = await _taskService.GetAllAsync(status, dueDate);
+        return Ok(tasks);
+    }
 }

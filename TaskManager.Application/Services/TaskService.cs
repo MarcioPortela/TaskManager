@@ -28,4 +28,18 @@ public class TaskService : ITaskService
         await _repository.AddAsync(task);
         return new CreateTaskResponse(task.Id);
     }
+
+    public async Task<IEnumerable<GetTasksResponse>> GetAllAsync(Domain.Enums.TaskStatus? status, DateTime? dueDate)
+    {
+        var tasks = await _repository.SearchAsync(status, dueDate);
+
+        return tasks.Select(t => new GetTasksResponse
+        {
+            Id = t.Id,
+            Title = t.Title,
+            Description = t.Description,
+            DueDate = t.DueDate,
+            Status = t.Status.ToString()
+        });
+    }
 }
