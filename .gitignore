@@ -12,3 +12,5 @@
 /TaskManager.Application/bin/Debug/net8.0
 /TaskManager.Domain/bin/Debug/net8.0
 /TaskManager.Infrastructure/bin/Debug/net8.0
+/TaskManager.Tests/bin/Debug/net8.0
+/TaskManager.Tests/obj
