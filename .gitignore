@@ -8,3 +8,7 @@
 /TaskManager.Domain/obj
 /TaskManager.Infrastructure/obj
 /TaskManager.Api/TaskManager.Api.csproj.user
+/TaskManager.Api/bin/Debug/net8.0
+/TaskManager.Application/bin/Debug/net8.0
+/TaskManager.Domain/bin/Debug/net8.0
+/TaskManager.Infrastructure/bin/Debug/net8.0
