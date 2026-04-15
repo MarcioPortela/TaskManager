@@ -10,7 +10,7 @@ namespace TaskManager.Domain.Entities
         public DateTime? DueDate { get; private set; }
         public Enums.TaskStatus Status { get; private set; }
 
-        public TaskItem(string title, string? description = null, DateTime? dueDate = null)
+        public TaskItem(string title, Enums.TaskStatus status, string? description = null, DateTime? dueDate = null)
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("O título é obrigatório.", nameof(title));
@@ -19,10 +19,10 @@ namespace TaskManager.Domain.Entities
             Title = title;
             Description = description;
             DueDate = dueDate;
-            Status = Enums.TaskStatus.Pending;
+            Status = status;
         }
 
-        public void Update(string title, string? description, DateTime? dueDate, Domain.Enums.TaskStatus status)
+        public void Update(string title, string? description, DateTime? dueDate, Enums.TaskStatus status)
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("O título é obrigatório.", nameof(title));

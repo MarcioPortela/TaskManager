@@ -25,6 +25,7 @@ public class TasksController : ControllerBase
     ///     {
     ///        "title": "Apontar horas utilizadas",
     ///        "description": "Colocar as horas que foram utilizadas na tarefa no board do Azure DevOps",
+    ///        "status": 0,
     ///        "dueDate": "2026-04-30T23:59:59Z"
     ///     }
     ///

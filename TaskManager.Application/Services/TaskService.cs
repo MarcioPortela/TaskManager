@@ -29,7 +29,7 @@ public class TaskService : ITaskService
             throw new ValidationException(validationResult.Errors);
         }
 
-        var task = new TaskItem(request.Title, request.Description, request.DueDate);
+        var task = new TaskItem(request.Title, request.Status, request.Description, request.DueDate);
         await _repository.AddAsync(task);
 
         // ==========================================
