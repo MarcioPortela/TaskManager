@@ -14,3 +14,5 @@
 /TaskManager.Infrastructure/bin/Debug/net8.0
 /TaskManager.Tests/bin/Debug/net8.0
 /TaskManager.Tests/obj
+/TaskManager.IntegrationTests/bin/Debug/net8.0
+/TaskManager.IntegrationTests/obj
