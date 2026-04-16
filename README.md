@@ -45,6 +45,9 @@ http://localhost:5000/swagger
 A API expõe as seguintes rotas baseadas na convenção REST:
 
 **POST** `/api/v1/tasks`: Cria uma nova tarefa.
+
 **GET** `/api/v1/tasks`: Lista todas as tarefas.
+
 **PUT** `/api/v1/tasks/{id}`: Atualiza os dados de uma tarefa existente.
+
 **DELETE** `/api/v1/tasks/{id}`: Remove uma tarefa do banco de dados.
